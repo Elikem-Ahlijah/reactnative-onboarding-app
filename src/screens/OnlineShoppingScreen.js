@@ -1,7 +1,18 @@
+import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
-const OnlineShoppingScreen = () => {
+const OnlineShoppingScreen = ({navigation}) => {
+    const handleSkip =()=>{
+        navigation.navigate('Payment Successful')
+    }
+
+    const handleNext = ()=>{
+        navigation.navigate('Add to cart')
+    }
+
+
+
     return (
         <View style={styles.container}>
             
@@ -15,7 +26,7 @@ const OnlineShoppingScreen = () => {
                 <Image style={styles.image} source={require('../../assets/Online_shopping.png')}></Image>
             </View>
             <View style={styles.buttoncontain}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleNext} style={styles.button}>
 					<Text style={styles.buttonText}>Next</Text>
 				</TouchableOpacity>
             </View>
@@ -23,7 +34,9 @@ const OnlineShoppingScreen = () => {
                 <View style={styles.mainpage}></View>
                 <View style={styles.pagination}></View>
                 <View style={styles.pagination}></View>
+            <TouchableOpacity onPress={handleSkip}>   
                 <Text style={styles.pageskip}>Skip</Text>
+            </TouchableOpacity> 
             </View>
             
         </View>
@@ -42,7 +55,7 @@ const styles = StyleSheet.create({
     heading:{
         fontSize: 20,
         fontWeight:'bold',
-        marginTop: 50,
+        // marginTop: 50,
         marginBottom: 10,
         color: 'black'
     },

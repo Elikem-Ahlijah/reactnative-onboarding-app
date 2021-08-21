@@ -1,7 +1,15 @@
 import React from 'react'
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
-const PaymentSuccessfulScreen = () => {
+const PaymentSuccessfulScreen = ({navigation}) => {
+    const handlePrevious =()=>{
+        navigation.navigate('Add to cart')
+    }
+
+    const handleStart = ()=>{
+        navigation.navigate('Online Shopping')
+    }
+
     return (
         <View style={styles.container}>
             
@@ -16,16 +24,18 @@ const PaymentSuccessfulScreen = () => {
             </View>
             <View style={styles.buttoncontain}>
                 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleStart} style={styles.button}>
 					<Text style={styles.buttonText}>Get Started</Text>
 				</TouchableOpacity>
             </View>
             <View style={styles.paginationcontainer}>
-            <Text style={styles.pageprevious}>Previous</Text>
+           <TouchableOpacity onPress={handlePrevious}>
+               <Text style={styles.pageprevious}>Previous</Text>
+           </TouchableOpacity> 
                 <View style={styles.pagination}></View>
                 <View style={styles.pagination}></View>
                 <View style={styles.mainpage}></View>
-                <Text style={styles.pageskip}>Skip</Text>
+              
             </View>
         </View>
     )
@@ -43,7 +53,7 @@ const styles = StyleSheet.create({
     heading:{
         fontSize: 20,
         fontWeight:'bold',
-        marginTop: 50,
+        // marginTop: 50,
         marginBottom: 10,
         color: 'black'
     },
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
     paginationcontainer:{
         flex:0.15,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
 		alignItems: 'center',
         marginTop: 25
     },

@@ -1,7 +1,19 @@
 import React from 'react'
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
-const AddToCartScreen = () => {
+const AddToCartScreen = ({navigation}) => {
+    const handleSkip =()=>{
+        navigation.navigate('Payment Successful')
+    }
+
+    const handleNext = () => {
+        navigation.navigate('Payment Successful')
+    }
+
+    const handlePrevious =()=>{
+        navigation.navigate('Online Shopping')
+    }
+
     return (
         <View style={styles.container}>
             
@@ -15,16 +27,20 @@ const AddToCartScreen = () => {
                 <Image style={styles.image} source={require('../../assets/add_to_cart.png')}></Image>
             </View>
              <View style={styles.buttoncontain}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleNext} style={styles.button}>
 					<Text style={styles.buttonText}>Next</Text>
 				</TouchableOpacity>
             </View>
             <View style={styles.paginationcontainer}>
-                <Text style={styles.pageprevious}>Previous</Text>
+              <TouchableOpacity onPress={handlePrevious}>  
+                  <Text style={styles.pageprevious}>Previous</Text>
+                </TouchableOpacity>
                 <View style={styles.pagination}></View>
                 <View style={styles.mainpage}></View>
                 <View style={styles.pagination}></View>
-                <Text style={styles.pageskip}>Skip</Text>
+                <TouchableOpacity onPress={handleSkip}>
+                    <Text style={styles.pageskip}>Skip</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -43,7 +59,7 @@ const styles = StyleSheet.create({
     heading:{
         fontSize: 20,
         fontWeight: 'bold',
-        marginTop: 50,
+        // marginTop: 50,
         marginBottom: 10,
         color: 'black'
     },
